@@ -1,8 +1,8 @@
 <?php 
 	define('host', 'localhost');
-	define('dbusr', 'id9080186_base');
-	define('dbpass', 'jwzpq');
-	define('dbname', 'id9080186_database');
+	define('dbusr', ''); // WRITE
+	define('dbpass', ''); // WRITE
+	define('dbname', ''); // WRITE
 	
 	$connection = mysqli_connect(host, dbusr, dbpass, dbname);
 
