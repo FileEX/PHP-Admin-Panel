@@ -1,2 +1,3 @@
 # PHP-Admin-Panel
-Incomplete web admin panel for game forum
+
+**It's incomplete but works**
