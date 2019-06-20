@@ -66,13 +66,14 @@ function generate_page_links($cur_page, $num_pages) {
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<title>Control Panel</title>
+	<title>Adm</title>
 	<link rel="stylesheet" type="text/css" href="global.css">
+	<script src="scale.js" type="text/javascript"></script>
 	<meta charset="utf-8" name="viewport" content="width=device.width, initial-scale=1">
 </head>
 <body>
 	<header>
-		<p>Admin Control Panel</p>
+		<p>ADM</p>
 	</header>
 
 	<nav>
@@ -90,7 +91,7 @@ function generate_page_links($cur_page, $num_pages) {
 		<?php
 		echo "
 		<form action='users.php?search=1' method='post'>
-			<input type='text' name='searchData' style='width: 15vw; height: 3vh; border-radius: 6px 6px 6px 6px; background-color: #333; color: white; border: none; font-size: 0.65em; outline: none; margin: 0;' placeholder='Szukaj'/>
+			<input type='text' name='searchData' style='width: 15vw; height: 3vh; color: white; font-size: 0.65em; margin: 0;' placeholder='Szukaj'/>
 			<button id='sButton'>Filtruj</button>
 		</form>";
 		?>
@@ -114,7 +115,14 @@ function generate_page_links($cur_page, $num_pages) {
 						<th></th>
 						<th>ID</th>
 						<th>Login</th>
+						<th>Hasło</th>
+						<th>Serial</th>
 						<th>Ranga</th>
+						<th>Pieniądze</th>
+						<th>Pieniądze w banku</th>
+						<th>Reputacja</th>
+						<th>Data premium</th>
+						<th>Prawo jazdy</th>
 					</tr>
 				";
 
@@ -122,9 +130,36 @@ function generate_page_links($cur_page, $num_pages) {
 				{
 					echo "<tr>";
 					echo "<td><span style='text-decoration: none; display: block; color: aqua;' onclick=''><a href='forms.php?action=edit&tbl=".$sqltable."&row=".$row['id']."'>Edytuj</a></span> <span style='text-decoration: none; display: block; color: red;' onclick=''><a href='forms.php?action=del&tbl=".$sqltable."&row=".$row['id']."'>Usuń</a></span></td>";
-					echo "<td> " . $row['id'] . "</td>";
-					echo "<td> " . $row['username'] . "</td>";
-					echo "<td> " . $row['rank'] . "</td>";
+					echo "<td>" . $row['id'] . "</td>";
+					echo "<td>" . $row['login'] . "</td>";
+					echo "<td>"  . $row['pass3'] . "</td>";
+					echo "<td>"  . $row['register_serial'] . "</td>";
+					echo "<td>" . $row['rank'] . "</td>";
+					echo "<td>"  . $row['money'] . "</td>";
+					echo "<td>"  . $row['bank_money'] . "</td>";
+					echo "<td>"  . $row['reputation'] . "</td>";
+					echo "<td>"  . $row['premiumdate'] . "</td>";
+					echo "<td><table style='border:none;'>";
+					echo "
+						<tr>
+							<th>A</th>
+							<th>B</th>
+							<th>C</th>
+							<th>L</th>
+							<th>T</th>
+						</tr>";
+
+					echo "<tr style='border:none;'>";
+					echo "<td style='border:none;'>"  . $row['pjA'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+					echo "<td style='border:none;'>"  . $row['pjB'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+					echo "<td style='border:none;'>"  . $row['pjC'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+					echo "<td style='border:none;'>"  . $row['pjL'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+					echo "<td style='border:none;'>"  . $row['pjT'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+					echo "</tr>";
+					echo "</table>";
+					
+					echo "</td>";
+
 					echo "</tr>";
 				}
 
@@ -134,7 +169,7 @@ function generate_page_links($cur_page, $num_pages) {
 			} elseif (isset($_GET['search'])) {
 				$d = $_POST['searchData'];
 				if(!empty($d)) {
-					$query = "SELECT * FROM $sqltable WHERE username='$d' OR id='$d' LIMIT 1";
+					$query = "SELECT * FROM $sqltable WHERE login='$d' OR id='$d' LIMIT 1";
 					$q = mysqli_query($connection, $query);
 
 					if (mysqli_num_rows($q) > 0) {
@@ -144,7 +179,14 @@ function generate_page_links($cur_page, $num_pages) {
 								<th></th>
 								<th>ID</th>
 								<th>Login</th>
+								<th>Hasło</th>
+								<th>Serial</th>
 								<th>Ranga</th>
+								<th>Pieniądze</th>
+								<th>Pieniądze w banku</th>
+								<th>Reputacja</th>
+								<th>Data premium</th>
+								<th>Prawo jazdy</th>
 							</tr>
 						";
 
@@ -152,9 +194,36 @@ function generate_page_links($cur_page, $num_pages) {
 						{
 							echo "<tr>";
 							echo "<td><span style='text-decoration: none; display: block; color: aqua;' onclick=''><a href='forms.php?action=edit&tbl=".$sqltable."&row=".$row['id']."'>Edytuj</a></span> <span style='text-decoration: none; display: block; color: red;' onclick=''><a href='forms.php?action=del&tbl=".$sqltable."&row=".$row['id']."'>Usuń</a></span></td>";
-							echo "<td> " . $row['id'] . "</td>";
-							echo "<td> " . $row['username'] . "</td>";
-							echo "<td> " . $row['rank'] . "</td>";
+							echo "<td>" . $row['id'] . "</td>";
+							echo "<td>" . $row['login'] . "</td>";
+							echo "<td>"  . $row['pass3'] . "</td>";
+							echo "<td>"  . $row['register_serial'] . "</td>";
+							echo "<td>" . $row['rank'] . "</td>";
+							echo "<td>"  . $row['money'] . "</td>";
+							echo "<td>"  . $row['bank_money'] . "</td>";
+							echo "<td>"  . $row['reputation'] . "</td>";
+							echo "<td>"  . $row['premiumdate'] . "</td>";
+							echo "<td><table style='border:none;'>";
+							echo "
+								<tr>
+									<th>A</th>
+									<th>B</th>
+									<th>C</th>
+									<th>L</th>
+									<th>T</th>
+								</tr>";
+
+							echo "<tr style='border:none;'>";
+							echo "<td style='border:none;'>"  . $row['pjA'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+							echo "<td style='border:none;'>"  . $row['pjB'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+							echo "<td style='border:none;'>"  . $row['pjC'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+							echo "<td style='border:none;'>"  . $row['pjL'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+							echo "<td style='border:none;'>"  . $row['pjT'] == 1 ? "<td style='border:none;'>Tak</td>" : "<td style='border:none;'>Nie</td>" . "</td>";
+							echo "</tr>";
+							echo "</table>";
+							
+							echo "</td>";
+
 							echo "</tr>";
 						}
 					} else {
@@ -166,6 +235,8 @@ function generate_page_links($cur_page, $num_pages) {
 			}
 			echo "</table>";
 			mysqli_close($connection);
+
+			ob_end_flush();
 		?>
 	</div>
 

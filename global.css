@@ -6,11 +6,11 @@ html, body {
 }
 
 header {
-	background-color: #0085E2;
-	position: fixed;
+  	background: #0085E2;
+	position: absolute;
 	top: 0;
 	left: 0;
-	right: 0;
+	width: 100%;
 	height: 80px;
 	text-align: center;
 }
@@ -64,7 +64,7 @@ header * {
 	margin: 0;
 	padding: 0;
 	display: inline-table;
-	transform: translate(5vw, 20vh);
+	transform: translate(20vw, -18vh);
 }
 
 input[type=text], input[type=password] {
@@ -94,8 +94,8 @@ input[type=text], input[type=password] {
 #fButton {
 	width: 10%;
 	margin-left: 5%;
-	transform: translate(-10vw, 10vh);
-	-webkit-transform: translate(-10vw, 12.7vh);
+	transform: translate(-2vw, 7.7vh);
+	-webkit-transform: translate(-2vw, 9.7vh);
 }
 
 #editForm {
@@ -125,18 +125,28 @@ button {
 	padding: 0;
 	border: 2px solid #333;
 	height: 5vh;
-	background: #0085E2;
+	background: none;
+	/*background: #0085E2;*/
+	background-color: rgba(255,255,255, 50);
+	background-image:  linear-gradient(to bottom,#428bca 0,#2d6ca2 100%);
+	background-repeat: no-repeat;
 	color: white;
-	transition: background 0.5s, border 0.5s;
+	/*transition: background 0.5s, border 0.5s;*/
+	transition: all 0.218s;
+	-o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
 	border-radius: 15px;
 	outline: none;
 }
 
-button:hover {
-	background: #333;
-}
+button:hover,
+button:active,
+button:focus {
+	background-color: #2d6ca2;
+	background-image: linear-gradient(to bottom,#428bca 0,#2d6ca2 100%);
+	background-position: 0 -15px;
 
-button:active {
 	border: 2px solid #111;
 }
 
@@ -177,7 +187,7 @@ li a:hover:not(.active) {
 
 nav {
 	float: left;
-	transform: translateY(10vh);
+	transform: translateY(11vh);
 	width: 200px;
 	height: 300px;
 	border: 1px solid #555;
@@ -197,10 +207,11 @@ tr:hover td {
 }
 
 th {
-	color: white;
-	background-color: black;
+	color: black;
+	background-color: white;
 }
 
 th, td {
-	padding: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }

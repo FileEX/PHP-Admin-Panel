@@ -66,13 +66,13 @@ function generate_page_links($cur_page, $num_pages) {
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<title>Control Panel</title>
+	<title>Adm</title>
 	<link rel="stylesheet" type="text/css" href="global.css">
 	<meta charset="utf-8" name="viewport" content="width=device.width, initial-scale=1">
 </head>
 <body>
 	<header>
-		<p>Admin Control Panel</p>
+		<p>ADM</p>
 	</header>
 
 	<nav>
